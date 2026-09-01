@@ -1,0 +1,42 @@
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+export async function apiFetch(path, options = {}) {
+  const res = await fetch(`${API_BASE}${path}`, {
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+    ...options,
+  });
+
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {
+    // no JSON body
+  }
+
+  if (!res.ok) {
+    throw new Error(data?.message || 'Something went wrong. Please try again.');
+  }
+
+  return data;
+}
+
+async function request(path, options = {}) {
+  return apiFetch(path, options);
+}
+
+export const registerUser = (payload) =>
+  request('/auth/register', { method: 'POST', body: JSON.stringify(payload) });
+
+export const loginUser = (payload) =>
+  request('/auth/login', { method: 'POST', body: JSON.stringify(payload) });
+
+export const logoutUser = () => request('/auth/logout', { method: 'POST' });
+
+export const fetchCurrentUser = () => request('/auth/me', { method: 'GET' });
+
+export const requestPasswordReset = (email) =>
+  request('/auth/forgot-password', { method: 'POST', body: JSON.stringify({ email }) });
+
+export const resetPassword = (token, password) =>
+  request('/auth/reset-password', { method: 'POST', body: JSON.stringify({ token, password }) });
