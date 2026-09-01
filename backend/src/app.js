@@ -13,7 +13,7 @@ const app = express();
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+    origin: process.env.CLIENT_ORIGIN || 'https://phantasm-nova.onrender.com',
     credentials: true,
   })
 );
