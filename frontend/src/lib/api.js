@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'https://phantasm-nova.onrender.com/api';
+const API_BASE = 'https://phantasm-nova.onrender.com/api';
 
 export async function apiFetch(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
