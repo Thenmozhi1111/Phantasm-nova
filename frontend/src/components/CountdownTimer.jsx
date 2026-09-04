@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Change this to your symposium's actual date
-const TARGET_DATE = new Date('2026-09-19T00:00:00');
+const TARGET_DATE = new Date('2026-09-22T00:00:00');
 
 function getTimeLeft() {
   const now = new Date();
