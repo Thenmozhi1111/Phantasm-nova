@@ -1,4 +1,4 @@
-import { getEventTrackPositions } from '../utils/Tracklayout';
+import { getEventTrackPositions } from '../utils/trackLayout';
 
 // Real content sourced from __TECHNICAL_EVENTS.docx (events 1-4) and
 // __NON_TECH.docx (events 5-8). `icon` selects a glyph from
