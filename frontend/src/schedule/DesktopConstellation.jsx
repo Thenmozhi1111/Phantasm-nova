@@ -125,11 +125,16 @@ export default function DesktopConstellation() {
             <div key={slot.id}>
               {/* slot time label, sits just under the spine at the branch origin */}
               <div
-                className="absolute -translate-x-1/2 text-[9px] text-slate-400 font-body whitespace-nowrap"
-                style={{ left: `${ORIGINS[slot.id].x}%`, top: "56%" }}
-              >
-                {slot.time}
-              </div>
+  className="absolute -translate-x-1/2 text-[9px] text-slate-400 font-body whitespace-nowrap"
+  style={{
+    left: `${ORIGINS[slot.id].x}%`,
+    top: slot.id === "tech-slot-2" || slot.id === "nontech-slot-1"
+      ? "44%"
+      : "56%",
+  }}
+>
+  {slot.time}
+</div>
 
               {slot.events.map((ev) => (
                 <div
