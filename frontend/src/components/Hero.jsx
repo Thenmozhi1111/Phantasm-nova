@@ -1,5 +1,6 @@
 import CountdownTimer from './CountdownTimer';
 import { CalendarDays, ChevronDown, Trophy } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
@@ -81,8 +82,8 @@ export default function Hero() {
           {/* Explore Events Button */}
 {/* Explore Events Button - Mobile Only */}
 <div className="flex sm:hidden justify-center mt-12">
-  <a
-    href="/events"
+  <Link
+    to='/events'
     className="
       inline-flex 
       items-center 
@@ -109,7 +110,7 @@ export default function Hero() {
     "
   >
     EXPLORE EVENTS
-  </a>
+  </Link>
 </div>
         </div>
       </div>
@@ -118,12 +119,12 @@ export default function Hero() {
       {/* Explore Events + Scroll to Explore */}
 <div className="hidden sm:flex absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 z-10 flex-col items-center">
 
-  <a
-    href="/events"
+  <Link
+    to='/events'
     className="mb-4 inline-flex items-center justify-center rounded-md border border-blue-400 bg-blue-950/40 px-6 py-2.5 text-sm font-semibold tracking-[0.2em] text-blue-200 transition-all duration-300 hover:bg-blue-500/20 hover:text-white hover:shadow-[0_0_25px_rgba(59,130,246,0.6)]"
   >
     EXPLORE EVENTS
-  </a>
+  </Link>
 
   <div className="flex flex-col items-center gap-1 animate-bounce">
     <ChevronDown className="text-blue-400" size={18} />
