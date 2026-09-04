@@ -15,13 +15,12 @@ export default function Hero() {
         />
 
         <img
-          src="/assets/image.png"
-          alt=""
-          aria-hidden="true"
-          className="mobile-dragon absolute md:hidden vh-100 w-full object-cover object-center"
-          style={{ objectPosition: 'center center', maxHeight: '100vh' ,maxwidth: '110vw'}}
-        />
-
+  src="/assets/image.png"
+  alt=""
+  aria-hidden="true"
+  className="mobile-dragon absolute md:hidden left-1/2 -translate-x-1/2 w-[115%] max-w-none h-full object-cover object-center"
+  style={{ objectPosition: 'center center' }}
+/>
         {/* Gradient overlays optimized for mobile and desktop */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 via-80% to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent via-50% to-black/40" />
@@ -29,7 +28,8 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl w-full px-[8px] md:px-[90px] min-h-screen flex flex-col md:flex-row md:items-start">
+      
+        <div className="relative z-10 max-w-7xl w-full px-5 sm:px-6 md:px-[90px] min-h-screen flex flex-col md:flex-row md:items-start">
         <div className="hero-copy max-w-xl w-full flex flex-col justify-start pt-[32px] md:pt-[40px] md:h-auto h-auto pb-10 md:pb-0">
           <p className="text-blue-400 text-[10px] sm:text-xs md:text-sm tracking-[0.3em] font-body mb-3 sm:mb-4">
             WELCOME TO
@@ -73,20 +73,68 @@ export default function Hero() {
               <Trophy className="text-blue-400" size={15} />
               <div>
                 <span className="block text-xs sm:text-sm text-blue-300 tracking-[0.2em] font-body">POOL PRIZE</span>
-                <span className="font-serif2 text-base sm:text-lg tracking-wide">30,000</span>
+                <span className="font-serif2 text-base sm:text-lg tracking-wide">upto 30,000</span>
               </div>
             </div>
+            
           </div>
+          {/* Explore Events Button */}
+{/* Explore Events Button - Mobile Only */}
+<div className="flex sm:hidden justify-center mt-12">
+  <a
+    href="/events"
+    className="
+      inline-flex 
+      items-center 
+      justify-center 
+      rounded-lg 
+      border border-blue-400/60 
+      bg-blue-600/15 
+      px-6 
+      py-3 
+      text-sm 
+      sm:text-base 
+      font-semibold 
+      tracking-[0.15em] 
+      text-blue-300 
+      shadow-[0_0_20px_rgba(59,130,246,0.25)] 
+      backdrop-blur-sm 
+      transition-all 
+      duration-300 
+      hover:bg-blue-500/20 
+      hover:border-blue-400 
+      hover:text-white 
+      hover:shadow-[0_0_30px_rgba(59,130,246,0.45)] 
+      active:scale-95 
+    "
+  >
+    EXPLORE EVENTS
+  </a>
+</div>
         </div>
       </div>
 
       {/* Scroll to explore - Hidden on mobile, visible on tablet+ */}
-      <div className="hidden sm:flex absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-1 animate-bounce">
-        <ChevronDown className="text-blue-400" size={18} />
-        <span className="text-blue-300 text-xs sm:text-sm tracking-[0.3em] font-body">
-          SCROLL TO EXPLORE
-        </span>
-      </div>
+      {/* Explore Events + Scroll to Explore */}
+<div className="hidden sm:flex absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 z-10 flex-col items-center">
+
+  <a
+    href="/events"
+    className="mb-4 inline-flex items-center justify-center rounded-md border border-blue-400 bg-blue-950/40 px-6 py-2.5 text-sm font-semibold tracking-[0.2em] text-blue-200 transition-all duration-300 hover:bg-blue-500/20 hover:text-white hover:shadow-[0_0_25px_rgba(59,130,246,0.6)]"
+  >
+    EXPLORE EVENTS
+  </a>
+
+  <div className="flex flex-col items-center gap-1 animate-bounce">
+    <ChevronDown className="text-blue-400" size={18} />
+    <span className="text-blue-300 text-xs sm:text-sm tracking-[0.3em] font-body">
+      SCROLL TO EXPLORE
+    </span>
+  </div>
+  
+
+</div>
+
     </section>
   );
 }
