@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import EventWorld from '../components/events/EventWorld';
-import Navbar from '../components/layout/Navbar';
+import Navbar from '../components/Navbar';
 import { JOURNEY, TRACK } from '../components/events/config';
 import { events, journeyStops } from '../data/events';
 import { useJourneyProgress } from '../hooks/useJourneyProgress';
@@ -38,13 +38,14 @@ export default function Events({ onSelectEvent }) {
 
   return (
     <>
+     <Navbar />
       <div ref={trackRef} className="journey-track" style={{ height: `${trackVh}vh` }}>
         <div className="journey-sticky">
           <EventWorld progress={progress} onSelectEvent={onSelectEvent} />
 
           <div className="hero-veil" />
 
-          <Navbar />
+         
 
           <div
             className="intro-overlay"
