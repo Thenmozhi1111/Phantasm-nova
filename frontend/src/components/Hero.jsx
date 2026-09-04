@@ -15,10 +15,11 @@ export default function Hero() {
         />
 
         <img
-          src="/assets/dragon-transparent.png"
+          src="/assets/image.png"
           alt=""
           aria-hidden="true"
-          className="mobile-dragon absolute md:hidden"
+          className="mobile-dragon absolute md:hidden vh-100 w-full object-cover object-center"
+          style={{ objectPosition: 'center center', maxHeight: '100vh' ,maxwidth: '110vw'}}
         />
 
         {/* Gradient overlays optimized for mobile and desktop */}
@@ -28,15 +29,15 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl w-full px-[68px] md:px-[90px] min-h-screen flex flex-col md:flex-row md:items-start">
+      <div className="relative z-10 max-w-7xl w-full px-[8px] md:px-[90px] min-h-screen flex flex-col md:flex-row md:items-start">
         <div className="hero-copy max-w-xl w-full flex flex-col justify-start pt-[32px] md:pt-[40px] md:h-auto h-auto pb-10 md:pb-0">
-          <p className="text-blue-400 text-lg sm:text-xl md:text-2xl tracking-[0.3em] font-body mb-3 sm:mb-4">
+          <p className="text-blue-400 text-[10px] sm:text-xs md:text-sm tracking-[0.3em] font-body mb-3 sm:mb-4">
             WELCOME TO
           </p>
 
-          <h1 className="font-gothic text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-tight sm:leading-none drop-shadow-[0_0_25px_rgba(96,165,250,0.5)]">
-            PHANTASM
-          </h1>
+         <h1 className="font-gothic text-4xl sm:text-4xl md:text-6xl lg:text-6xl text-white leading-tight sm:leading-none drop-shadow-[0_0_25px_rgba(96,165,250,0.5)]">
+        PHANTASM NOVA
+        </h1>
           <p className="font-serif2 text-blue-200 text-base sm:text-lg md:text-xl tracking-[0.35em] mt-2">
             CSE SYMPOSIUM 2026
           </p>

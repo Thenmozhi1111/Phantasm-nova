@@ -6,6 +6,7 @@ const navLinks = [
   { name: 'Home', path: '/', section: 'home' },
   { name: 'Events', path: '/events', section: 'events' },
   { name: 'Schedule', path: '/schedule', section: 'schedule' },
+   { name: 'Register', path: '/register', section: null },
   { name: 'Contact', path: '/contact', section: 'contact' },
 ];
 
@@ -40,7 +41,7 @@ export default function Navbar() {
           />
           <div className="flex flex-col leading-none">
             <span className="font-gothic text-xl sm:text-2xl md:text-3xl text-blue-500 tracking-wider drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
-              PHANTASM
+              PHANTAS
             </span>
             <span className="text-[8px] sm:text-[10px] md:text-xs text-blue-500 tracking-[0.3em] font-body">
               CSE SYMPOSIUM
@@ -51,7 +52,8 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-10 font-serif2 text-sm tracking-wide">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
-            const target = isHomePage ? `/#${link.section}` : link.path;
+            
+            
 
             return (
               <Link

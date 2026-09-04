@@ -29,7 +29,7 @@ import MagicLight from './MagicLight';
 import JourneyCamera from './JourneyCamera';
 import Loader from './Loader';
 import { JOURNEY, PLATFORM } from './config';
-import { getFinaleZ } from '../../utils/Tracklayout';
+import { getFinaleZ } from '../../utils/trackLayout';
 
 export default function EventWorld({ progress = 0, onSelectEvent }) {
   // Single authoritative camera position, written by JourneyCamera each

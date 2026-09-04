@@ -6,6 +6,7 @@ const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Events', path: '/events' },
   { name: 'Schedule', path: '/schedule' },
+   { name: 'Register', path: '/register' },
   { name: 'Contact', path: '/contact' },
 ];
 
