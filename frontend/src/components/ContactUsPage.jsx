@@ -92,7 +92,7 @@ export default function ContactUsPage({ showNavbar = true }) {
             </div>
 
             {/* Coordinator Cards */}
-            <div className="relative top-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
               {coordinators.map((c) => (
                 <div
                   key={c.name}
@@ -177,18 +177,19 @@ export default function ContactUsPage({ showNavbar = true }) {
               target="_blank"
               rel="noopener noreferrer"
               className="
-                relative
-                block
-                w-full
-                sm:h-[250px]
-                lg:h-[260px]
-                rounded-xl
-                overflow-hidden
-                bg-[#0b1220]
-                border border-white/5
-                shadow-glow
-                group
-              "
+  relative
+  block
+  w-full
+  h-[180px]
+  sm:h-[250px]
+  lg:h-[260px]
+  rounded-xl
+  overflow-hidden
+  bg-[#0b1220]
+  border border-white/5
+  shadow-glow
+  group
+"
             >
 
               {/* Grid */}
@@ -400,7 +401,7 @@ export default function ContactUsPage({ showNavbar = true }) {
             </div>
 
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm">
-              PHANTASM is more than a symposium. It's where ideas collide,
+              PHANTASM NOVA is more than a symposium. It's where ideas collide,
               minds connect, and innovation comes to life.
             </p>
 
@@ -486,7 +487,17 @@ export default function ContactUsPage({ showNavbar = true }) {
                   transition-colors
                 "
               >
-                <Camera className="w-4 h-4" />
+                <svg
+  className="w-4 h-4"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1.8"
+>
+  <rect x="3" y="3" width="18" height="18" rx="5" />
+  <circle cx="12" cy="12" r="4" />
+  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+</svg>
               </a>
 
               {/* LinkedIn */}
@@ -505,7 +516,13 @@ export default function ContactUsPage({ showNavbar = true }) {
                   transition-colors
                 "
               >
-                <BriefcaseBusiness className="w-4 h-4" />
+                <svg
+  className="w-4 h-4"
+  viewBox="0 0 24 24"
+  fill="currentColor"
+>
+  <path d="M6.5 8.5H3.5V20h3V8.5ZM5 3.5A1.75 1.75 0 1 0 5 7a1.75 1.75 0 0 0 0-3.5ZM10 8.5H7V20h3v-5.7c0-1.5.3-3 2.2-3 1.8 0 1.8 1.7 1.8 3.1V20h3v-6.2c0-3.1-.7-5.5-4.2-5.5-1.4 0-2.4.8-2.8 1.5V8.5Z" />
+</svg>
               </a>
 
               {/* YouTube */}
@@ -524,7 +541,13 @@ export default function ContactUsPage({ showNavbar = true }) {
                   transition-colors
                 "
               >
-                <Play className="w-4 h-4" />
+                <svg
+  className="w-4 h-4"
+  viewBox="0 0 24 24"
+  fill="currentColor"
+>
+  <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.9V8.1l6.5 3.9-6.5 3.9Z" />
+</svg>
               </a>
 
             </div>
