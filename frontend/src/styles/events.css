@@ -16,9 +16,7 @@
   scroll-behavior: smooth;
 }
 
-.event-app * {
-  margin: 0;
-  padding: 0;
+.event-app > * {
   box-sizing: border-box;
 }
 
@@ -32,147 +30,7 @@
   color: var(--void);
 }
 
-/* ---------- NAVBAR ---------- */
-.navbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px 40px;
-  background: linear-gradient(to bottom, rgba(10, 13, 19, 0.7) 0%, rgba(10, 13, 19, 0) 100%);
-}
 
-.navbar-logo {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-.navbar-logo-main {
-  font-family: 'Cinzel', serif;
-  font-weight: 600;
-  font-size: 17px;
-  letter-spacing: 0.08em;
-  color: var(--parchment);
-}
-.navbar-logo-sub {
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--arcane);
-  font-weight: 600;
-}
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-  gap: 34px;
-  list-style: none;
-}
-.navbar-links a {
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  font-weight: 500;
-  padding-bottom: 6px;
-  border-bottom: 1px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-.navbar-links a:hover {
-  color: var(--parchment);
-}
-.navbar-links li[data-active='true'] a {
-  color: var(--parchment);
-  border-color: var(--arcane);
-}
-
-.navbar-register {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--arcane);
-  border: 1px solid var(--arcane);
-  padding: 9px 20px;
-  text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.navbar-register:hover {
-  background: var(--arcane);
-  color: var(--void);
-}
-
-@media (max-width: 860px) {
-  .navbar-links {
-    display: none;
-  }
-  .navbar-register {
-    display: none;
-  }
-  .navbar-toggle {
-    display: flex;
-  }
-  .navbar {
-    padding: 16px 20px;
-  }
-}
-
-/* Hamburger toggle — hidden on desktop, shown only under the breakpoint
-   above where .navbar-links/.navbar-register have nothing to replace
-   them otherwise. */
-.navbar-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 4;
-}
-.navbar-toggle span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--parchment);
-}
-
-.navbar-mobile-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  list-style: none;
-  background: rgba(10, 13, 19, 0.96);
-  border-top: 1px solid var(--stone-line);
-  padding: 8px 20px 20px;
-  z-index: 3;
-}
-.navbar-mobile-menu li {
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-.navbar-mobile-menu a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.navbar-mobile-menu li[data-active='true'] a {
-  color: var(--parchment);
-}
-.navbar-mobile-register {
-  color: var(--arcane) !important;
-  font-weight: 600;
-}
 
 /* ---------- JOURNEY / HERO ---------- */
 .journey-track {
