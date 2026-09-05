@@ -1,6 +1,6 @@
 import { MathUtils } from 'three';
 import { JOURNEY } from '../components/events/config';
-import { getEventTrackPositions } from './Tracklayout';
+import { getEventTrackPositions } from './trackLayout';
 
 const EVENT_ZS = getEventTrackPositions().map((p) => p.z);
 
