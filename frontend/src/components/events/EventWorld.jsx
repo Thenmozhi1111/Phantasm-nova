@@ -1,4 +1,4 @@
-import { Suspense, useRef } from 'react';
+import { Suspense, useRef, memo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import Atmosphere from './Atmosphere';
@@ -30,8 +30,18 @@ import JourneyCamera from './JourneyCamera';
 import Loader from './Loader';
 import { JOURNEY, PLATFORM } from './config';
 import { getFinaleZ } from '../../utils/trackLayout';
+import { useQuality } from '../../performance/PerformanceProvider';
+import PerformanceMonitor from '../../performance/PerformanceMonitor';
 
-export default function EventWorld({ progress = 0, onSelectEvent }) {
+/**
+ * Wrapped in React.memo: Events.jsx re-renders occasionally for non-3D
+ * reasons (the journey-tracker highlight advancing to the next stop) —
+ * without memo, every one of those re-renders would re-diff this entire
+ * component's JSX tree even though none of its actual props changed
+ * (progressRef is a stable ref identity; onSelectEvent is stable via
+ * useCallback in Events.jsx). memo skips that diff entirely.
+ */
+function EventWorld({ progressRef, onSelectEvent }) {
   // Single authoritative camera position, written by JourneyCamera each
   // frame and read by Minecart — see JourneyCamera.jsx for why this
   // (rather than each component computing its own position from
@@ -45,19 +55,35 @@ export default function EventWorld({ progress = 0, onSelectEvent }) {
     locked: false,
   });
 
+  const { quality } = useQuality();
+
   return (
     <Canvas
-      shadows
-      dpr={[1, 1.75]}
+      // Section 9 — DPR/antialias/renderer settings all come from the
+      // active quality tier instead of one fixed desktop-oriented config.
+      // Mobile is capped at 0.75–1x device pixel ratio (task section 9):
+      // rendering a modern phone at its full physical pixel density was
+      // pure wasted GPU fill-rate for a scene this dark/atmospheric.
+      shadows={quality.shadows}
+      dpr={quality.dpr}
       gl={{
-        antialias: true,
-        powerPreference: 'high-performance',
+        antialias: quality.antialias,
+        // 'high-performance' forces a discrete GPU on laptops that have
+        // one, which is what we want on HIGH; on LOW we ask for
+        // 'low-power' instead, since battery/thermal headroom matters
+        // more than peak throughput on a phone.
+        powerPreference: quality.powerPreference,
         toneMapping: THREE.ACESFilmicToneMapping,
         toneMappingExposure: 1.35,
+        // Never needed for this scene (nothing reads back the canvas
+        // pixels) and keeping it off avoids an extra framebuffer copy
+        // every frame — a real, if small, per-frame GPU cost.
+        preserveDrawingBuffer: false,
       }}
     >
       <Suspense fallback={<Loader />}>
-        <JourneyCamera progress={progress} cameraState={cameraState} />
+        <PerformanceMonitor />
+        <JourneyCamera progressRef={progressRef} cameraState={cameraState} />
         <Atmosphere />
 
         <AncientGate position={[0, 0, 0]} />
@@ -75,11 +101,17 @@ export default function EventWorld({ progress = 0, onSelectEvent }) {
         {/* AmbientTorches removed — see note near the import. */}
         <Minecart cameraState={cameraState} />
 
-        <FireLight position={[-4, 1.4, 3]} intensity={3.2} />
-        <MagicLight position={[4, 1.4, 3]} intensity={3.2} />
-        <FireLight position={[-4, 1.4, getFinaleZ() + 3]} intensity={3.2} />
-        <MagicLight position={[4, 1.4, getFinaleZ() + 3]} intensity={3.2} />
+        {/* Entrance/exit torch pairs — proximity-culled the same way as
+            the event-gate lights (see MagicLight/FireLight's own
+            cameraState + lightCullRadius handling) so only the pair the
+            camera is actually near is ever active (task section 11). */}
+        <FireLight position={[-4, 1.4, 3]} intensity={3.2} cameraState={cameraState} />
+        <MagicLight position={[4, 1.4, 3]} intensity={3.2} cameraState={cameraState} />
+        <FireLight position={[-4, 1.4, getFinaleZ() + 3]} intensity={3.2} cameraState={cameraState} />
+        <MagicLight position={[4, 1.4, getFinaleZ() + 3]} intensity={3.2} cameraState={cameraState} />
       </Suspense>
     </Canvas>
   );
 }
+
+export default memo(EventWorld);

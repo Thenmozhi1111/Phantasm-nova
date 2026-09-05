@@ -44,15 +44,15 @@ export default function EventDetails({ eventId, onBack }) {
               <div className="details-glyph">
                 <EventGlyph icon={ev.icon} />
               </div>
-              <div>
-                <div className="details-type">{ev.type}</div>
-                <h1 className="details-title">{ev.title}</h1>
-                <div className="details-tagline">
-                  <span className="tagline-line" />
-                  {ev.tagline}
-                  <span className="tagline-line" />
-                </div>
-              </div>
+              <div className="details-heading-copy">
+            <div className="details-type">{ev.type}</div>
+            <h1 className="details-title">{ev.title}</h1>
+            <div className="details-tagline">
+              <span className="tagline-line" />
+              {ev.tagline}
+              <span className="tagline-line" />
+            </div>
+          </div>
             </div>
 
             <p className="details-desc">{ev.description}</p>

@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
+import { useMemo, useRef, useState } from 'react';
+import { useGLTF, Html } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
 import { useFittedGLTF } from '../../utils/fitModel';
 import { cloneGltfScene } from '../../utils/cloneGltf';
@@ -10,6 +10,13 @@ import GateVoid from './GateVoid';
 import GatePortal from './GatePortal';
 
 const ZOOM_DURATION = 0.7; // seconds — matches the ~500-800ms spec range
+
+// World-Z distance (same units as MagicLight's proximity cull) at which
+// the "Click here to explore" prompt mounts. Roughly 60% of the gap
+// between gates (TRACK.eventSpacing = 34), so it appears once the gate
+// is clearly the thing in front of you on the approach, not the instant
+// it spawns far down the track.
+const CTA_REVEAL_RADIUS = 36;
 
 /**
  * Clicking the gate pushes the camera in through the arch, then hands off
@@ -21,6 +28,12 @@ export default function EventGate({ z, side, code, id, facingY = 0, onSelect, ca
   const { scene, fit } = useFittedGLTF(MODEL_PATHS.gate, MODEL_FIT.eventGate);
   const { camera } = useThree();
   const [hovered, setHovered] = useState(false);
+  // Mounted only once the camera is actually near this gate — see
+  // CTA_REVEAL_RADIUS above and the useFrame check below. Starts false so
+  // the prompt isn't sitting (even invisibly) on every one of the 8 gates
+  // from the very start of the journey.
+  const [ctaNear, setCtaNear] = useState(false);
+  const ctaNearRef = useRef(false);
   // Same fix as AncientGate — this loads the same gate URL as the
   // entrance and 7 other event gates; each instance needs its own clone.
   const instance = useMemo(() => cloneGltfScene(scene), [scene]);
@@ -49,6 +62,20 @@ export default function EventGate({ z, side, code, id, facingY = 0, onSelect, ca
       onComplete: () => onSelect?.(id),
     });
   }
+
+  // Same distance-from-camera pattern as MagicLight's light culling
+  // (cameraState.current.z vs. this gate's world z), but driving whether
+  // the CTA is mounted at all rather than a light's on/off switch. Only
+  // calls setState on the rare frame the near/far state actually flips,
+  // same as Events.jsx's activeStopIndex — not every frame.
+  useFrame(() => {
+    if (!cameraState) return;
+    const isNear = Math.abs(cameraState.current.z - z) <= CTA_REVEAL_RADIUS;
+    if (isNear !== ctaNearRef.current) {
+      ctaNearRef.current = isNear;
+      setCtaNear(isNear);
+    }
+  });
 
   return (
     <group
@@ -82,8 +109,33 @@ export default function EventGate({ z, side, code, id, facingY = 0, onSelect, ca
           event number; per feedback, all 8 event gates should read as
           the blue portal (like the reference image), full stop. */}
       <GatePortal colorA={COLORS.magic} colorB="#8b6bff" z={-0.85} />
-      <MagicLight position={[0, 1.3, 1.5]} intensity={hovered ? 5 : 3.6} />
+      {/* cameraState + world-space z (not the local z above, which is
+          relative to this gate's own group) lets MagicLight cull itself
+          once the camera has moved on — see MagicLight.jsx. */}
+      <MagicLight position={[0, 1.3, 1.5]} intensity={hovered ? 5 : 3.6} cameraState={cameraState} worldZ={z} />
 
+      {/* "Click here to explore" prompt, floating above the gate. Plain
+          screen-space HTML (not a 3D sprite) so it's always crisp and
+          readable regardless of camera distance/angle — occlude={false}
+          keeps it visible even if scenery briefly passes in front, since
+          its whole purpose is to be a clear, unmissable call-to-action
+          rather than a strictly-physical scene element. Click here as
+          well as on the gate itself opens the event, and it's marked
+          aria-hidden since the gate group already carries the real
+          click/keyboard target.
+
+          Only rendered once the camera is within CTA_REVEAL_RADIUS of
+          this gate (see ctaNear/useFrame above) — it loads in as the gate
+          comes into view on the approach rather than existing the whole
+          journey through. */}
+      {ctaNear && (
+        <Html position={[0, 5, 1.5]} center distanceFactor={10} occlude={false} zIndexRange={[10, 0]}>
+          <div className="gate-cta" onClick={handleClick} aria-hidden="true">
+            <span className="gate-cta-arrow">↓</span>
+            <span className="gate-cta-text">Click here to explore</span>
+          </div>
+        </Html>
+      )}
     </group>
   );
 }

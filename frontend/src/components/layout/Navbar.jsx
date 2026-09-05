@@ -58,7 +58,7 @@ export default function Navbar() {
             return (
               <Link
                 key={link.name}
-                to={target}
+                to={link.path}
                 onClick={() => handleLinkClick(link)}
                 className={`relative pb-1 transition-colors ${
                   isActive ? 'text-blue-500' : 'text-slate-300 hover:text-blue-500'

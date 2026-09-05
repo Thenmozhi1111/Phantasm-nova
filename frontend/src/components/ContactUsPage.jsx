@@ -22,7 +22,7 @@ const coordinators = [
 
 const quickLinks = [
   { name: "Home", path: "/#home" },
-  { name: "Events", path: "/#events" },
+  { name: "Events", path: "/events" },
   { name: "Schedule", path: "/#schedule" },
   { name: "Contact Us", path: "/#contact" },
 ];

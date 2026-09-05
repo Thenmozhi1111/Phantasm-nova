@@ -1,68 +1,90 @@
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import EventWorld from '../components/events/EventWorld';
 import Navbar from '../components/Navbar';
 import { JOURNEY, TRACK } from '../components/events/config';
 import { events, journeyStops } from '../data/events';
 import { useJourneyProgress } from '../hooks/useJourneyProgress';
+import { PerformanceProvider } from '../performance/PerformanceProvider';
 
 // vh of scroll per world-unit of travel. Higher = more scrolling required
 // to cross the same distance = more time to look around near each event.
 // Tune this one number to change overall journey pacing.
 const VH_PER_UNIT = 5;
 
+const totalDistance = JOURNEY.cameraStartZ - JOURNEY.cameraEndZ;
+const distanceToGate = JOURNEY.cameraStartZ - TRACK.entranceZ;
+const introFadeEnd = distanceToGate / totalDistance;
+const trackVh = Math.round((JOURNEY.cameraStartZ - JOURNEY.cameraEndZ) * VH_PER_UNIT);
+
 export default function Events({ onSelectEvent }) {
   const trackRef = useRef(null);
-  const progress = useJourneyProgress(trackRef);
+  const progressRef = useJourneyProgress(trackRef);
 
-  // Was a fixed 0.15 (fade over the first 15% of the *entire* journey's
-  // scroll, gate included) — on a track this long that meant the hero
-  // text outlived reaching the entrance by a wide margin. Deriving it
-  // from the actual distance to the gate keeps it correct automatically
-  // if cameraStartZ or the track layout changes later: the text is
-  // fully gone right as the camera reaches TRACK.entranceZ, whatever
-  // that distance happens to be.
-  const totalDistance = JOURNEY.cameraStartZ - JOURNEY.cameraEndZ;
-  const distanceToGate = JOURNEY.cameraStartZ - TRACK.entranceZ;
-  const introFadeEnd = distanceToGate / totalDistance;
-  const introOpacity = Math.max(0, 1 - progress / introFadeEnd);
+  // DOM nodes updated directly from the rAF loop below — bypassing React
+  // state for anything that changes every scroll frame (task sections 16
+  // & 19: "scroll → ref/value → ... update", not "scroll → React state →
+  // component rerenders"). Only `activeStopIndex`, which changes at most
+  // 8 times across the whole journey, goes through setState.
+  const introRef = useRef(null);
+  const scrollHintRef = useRef(null);
+  const [activeStopIndex, setActiveStopIndex] = useState(0);
+  const activeStopIndexRef = useRef(0);
 
-  // Track height now scales with the actual journey distance (config.js),
-  // so adding/removing events changes this automatically.
-  const trackVh = Math.round((JOURNEY.cameraStartZ - JOURNEY.cameraEndZ) * VH_PER_UNIT);
+  useEffect(() => {
+    let raf;
+    const tick = () => {
+      const progress = progressRef.current;
+      const introOpacity = Math.max(0, 1 - progress / introFadeEnd);
 
-  // Approximate which stop we're nearest to, for the tracker highlight.
-  // Deliberately simple (linear across progress) rather than matching
-  // exact event Z positions — good enough for a UI indicator, not
-  // something else depends on this being precise.
-  const activeStopIndex = Math.min(journeyStops.length - 1, Math.floor(progress * journeyStops.length));
+      if (introRef.current) {
+        introRef.current.style.opacity = introOpacity;
+        introRef.current.style.filter = `blur(${(1 - introOpacity) * 8}px)`;
+        introRef.current.style.transform = `translate(-50%, calc(-50% + ${(1 - introOpacity) * -24}px))`;
+      }
+      if (scrollHintRef.current) {
+        scrollHintRef.current.style.opacity = introOpacity;
+      }
+
+      // Approximate which stop we're nearest to, for the tracker
+      // highlight. Only calls setState when the index actually changes,
+      // so this re-renders a handful of times total across the whole
+      // journey rather than every scroll frame.
+      const nextIndex = Math.min(journeyStops.length - 1, Math.floor(progress * journeyStops.length));
+      if (nextIndex !== activeStopIndexRef.current) {
+        activeStopIndexRef.current = nextIndex;
+        setActiveStopIndex(nextIndex);
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [progressRef]);
+
+  // Stable identity across re-renders so EventWorld's React.memo actually
+  // skips re-rendering when only `activeStopIndex` above changes.
+  const handleSelectEvent = useCallback((id) => onSelectEvent(id), [onSelectEvent]);
 
   return (
-    <>
-     <Navbar />
+    <PerformanceProvider>
+      <Navbar />
       <div ref={trackRef} className="journey-track" style={{ height: `${trackVh}vh` }}>
         <div className="journey-sticky">
-          <EventWorld progress={progress} onSelectEvent={onSelectEvent} />
+          <EventWorld progressRef={progressRef} onSelectEvent={handleSelectEvent} />
 
           <div className="hero-veil" />
 
-         
-
           <div
+            ref={introRef}
             className="intro-overlay"
-            style={{
-              top: '50%',
-              left: '50%',
-              opacity: introOpacity,
-              filter: `blur(${(1 - introOpacity) * 8}px)`,
-              transform: `translate(-50%, calc(-50% + ${(1 - introOpacity) * -24}px))`,
-            }}
+            style={{ top: '50%', left: '50%' }}
           >
             <div className="eyebrow">CSE Symposium</div>
             <h1 className="hero-title">EVENTS</h1>
             <p className="hero-sub">Hop aboard. Explore the events.</p>
           </div>
 
-          <div className="scroll-hint" style={{ opacity: introOpacity }}>
+          <div ref={scrollHintRef} className="scroll-hint">
             <span>Scroll to explore</span>
           </div>
 
@@ -104,6 +126,6 @@ export default function Events({ onSelectEvent }) {
           ))}
         </div>
       </section>
-    </>
+    </PerformanceProvider>
   );
 }

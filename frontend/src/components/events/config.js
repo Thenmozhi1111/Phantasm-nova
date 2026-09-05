@@ -10,15 +10,22 @@ export const COLORS = {
   ambient: '#3a4a70',
 };
 
+// Resolved once via the central model resolver (src/performance/models.js),
+// which picks /models/mobile/... or /models/desktop/... based on the
+// device tier detected at load time — mobile never fetches the desktop
+// GLB first. See task section 6 / src/performance/models.js.
+import { getModelPath } from '../../performance/models';
+
 export const MODEL_PATHS = {
-  gate: '/models/ancient-stone-gate.glb',
-  minecart: '/models/minecart.glb',
-  railway: '/models/railway.glb',
-  moon: '/models/moon.glb',
-  pathway: '/models/stone-pathway.glb',
-  tree: '/models/ancient-tree.glb',
-  towers: '/models/ruined-towers.glb',
-  temple: '/models/old_ruined_temple.glb',
+  gate: getModelPath('gate'),
+  minecart: getModelPath('minecart'),
+  railway: getModelPath('railway'),
+  moon: getModelPath('moon'),
+  pathway: getModelPath('pathway'),
+  tree: getModelPath('tree'),
+  towers: getModelPath('towers'),
+  temple: getModelPath('temple'),
+  debris: getModelPath('debris'),
 };
 
 export const MODEL_FIT = {

@@ -416,10 +416,21 @@
 .details-title {
   font-family: 'Cinzel', serif;
   font-weight: 700;
-  font-size: clamp(34px, 4vw, 48px);
+  font-size: clamp(26px, 7vw, 48px);
   letter-spacing: 0.02em;
   color: var(--parchment);
-  line-height: 1.1;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Lets the title actually shrink/wrap inside the flex heading row instead
+   of forcing the row wider than the screen — flex children default to
+   min-width:auto, which is exactly what was pushing longer event names
+   (e.g. "INNOSPHERE") past the right edge on narrow phones. */
+.details-heading-copy {
+  min-width: 0;
+  flex: 1;
 }
 
 .details-tagline {
@@ -696,11 +707,76 @@
     width: 56px;
     height: 56px;
   }
+  .details-title {
+    font-size: clamp(22px, 8vw, 36px);
+  }
   .rules-panel,
   .cta-panel {
     padding: 26px 22px;
   }
   .details-stats {
     gap: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  /* On the narrowest phones, the glyph sitting beside the title still
+     eats too much of the available width for longer event names — stack
+     it above the title instead so the name gets the full row to wrap
+     into rather than overflowing off-screen. */
+  .details-heading-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .details-glyph {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* "Click here to explore" prompt above each event gate — see EventGate.jsx */
+.gate-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 9px 20px;
+  border-radius: 999px;
+  background: rgba(6, 4, 14, 0.72);
+  border: 1px solid rgba(139, 107, 255, 0.7);
+  color: #ffffff;
+  font: 800 100px/1.2 inherit;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.95), 0 0 16px rgba(85, 200, 255, 0.85);
+  box-shadow: 0 0 14px rgba(139, 107, 255, 0.35);
+  animation: gate-cta-float 1.8s ease-in-out infinite;
+}
+.gate-cta-arrow {
+  font-size: 50px;
+  line-height: 1;
+  animation: gate-cta-bounce 1.4s ease-in-out infinite;
+}
+.gate-cta-text {
+  text-transform: uppercase;
+}
+@keyframes gate-cta-float {
+  0%, 100% { transform: translateY(0); opacity: 0.92; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+@keyframes gate-cta-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+@media (max-width: 700px) {
+  .gate-cta {
+    font-size: 20px;
+    padding: 8px 16px;
+  }
+  .gate-cta-arrow {
+    font-size: 22px;
   }
 }

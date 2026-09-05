@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import { COLORS, FOG_DENSITY } from './config';
@@ -6,13 +6,21 @@ import Ground from './Ground';
 import SkyBackdrop from './SkyBackdrop';
 import Galaxy from './Galaxy';
 import Moon from './Moon';
-
-const EMBER_COUNT = 70;
+import { useQuality } from '../../performance/PerformanceProvider';
 
 export default function Atmosphere() {
   const emberRef = useRef();
   const skyRef = useRef();
   const { camera } = useThree();
+  const { quality } = useQuality();
+
+  // Section 12 — particle counts scale with the quality tier's
+  // `particles` multiplier (embers) and its own dedicated star/ember caps
+  // (LOW phones don't need anywhere near 900 stars to read as a night
+  // sky). Recomputed only when the tier itself changes, not per frame.
+  const EMBER_COUNT = quality.emberCount;
+  const STAR_COUNT = quality.starCount;
+
   const emberData = useRef(
     Array.from({ length: EMBER_COUNT }, () => ({
       x: (Math.random() - 0.5) * 16,
@@ -77,11 +85,16 @@ export default function Atmosphere() {
 
         {/* Slight saturation bump (was 0) so the star field itself picks
             up a hint of color variety consistent with the galaxy band,
-            instead of being purely grayscale next to it. */}
-        <Stars radius={40} depth={20} count={900} factor={2} saturation={0.2} fade speed={0.15} />
+            instead of being purely grayscale next to it. Count scales
+            with quality.starCount — a phone GPU doesn't need 900
+            individually-shaded star points to read as a night sky. */}
+        <Stars radius={40} depth={20} count={STAR_COUNT} factor={2} saturation={0.2} fade speed={0.15} />
         {/* Replaces the old photographic cloud puffs (SkyClouds.jsx) —
-            see Galaxy.jsx for why. */}
-        <Galaxy />
+            see Galaxy.jsx for why. Gated by quality.clouds: LOW skips
+            this extra additive-blended sprite entirely (task section 13
+            — "reduce or disable expensive decorative effects on
+            mobile... multiple transparent layers"). */}
+        {quality.clouds && <Galaxy />}
       </group>
 
       {/* Ambient rising embers — static atmosphere fill, cheap (one
@@ -90,7 +103,7 @@ export default function Atmosphere() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={EMBER_COUNT}
+            count={emberData.current.length}
             array={new Float32Array(emberData.current.flatMap((e) => [e.x, e.y, e.z]))}
             itemSize={3}
           />
