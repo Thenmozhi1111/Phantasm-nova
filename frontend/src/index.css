@@ -232,8 +232,13 @@ button {
 
 @media (max-width: 767px) {
   .auth-shell {
+<<<<<<< HEAD
     padding-top: 5rem;
     padding-bottom: 4rem;
+=======
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+>>>>>>> 16840363 (Payment Updated)
     background-size: cover;
     background-position: center;
     background-attachment: scroll;

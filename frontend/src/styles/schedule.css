@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import "tailwindcss";
 
 /* Cosmic backdrop — same starfield + halo used on the homepage hero */
@@ -60,4 +61,68 @@
   100% {
     transform: translateX(-92px);
   }
+=======
+@import "tailwindcss";
+
+/* Cosmic backdrop — same starfield + halo used on the homepage hero */
+.starfield {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  background-image: radial-gradient(1px 1px at 10% 20%, #fff 60%, transparent),
+    radial-gradient(1px 1px at 80% 10%, #fff 60%, transparent),
+    radial-gradient(1.5px 1.5px at 60% 70%, #3b82f6 60%, transparent),
+    radial-gradient(1px 1px at 30% 85%, #fff 60%, transparent),
+    radial-gradient(1px 1px at 90% 60%, #fff 60%, transparent),
+    radial-gradient(1.5px 1.5px at 45% 40%, #3b82f6 60%, transparent);
+}
+
+.glow-arc {
+  position: absolute;
+  top: -220px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  box-shadow: 0 0 120px rgba(59, 130, 246, 0.05) inset;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .glow-arc {
+    width: 600px;
+    height: 600px;
+    top: -160px;
+  }
+}
+
+/* Sliding time display — mobile timeline only */
+.time-scroll {
+  width: 92px;
+  height: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.time-scroll span {
+  display: inline-block;
+  animation: timeScroll 7s linear infinite;
+}
+
+@keyframes timeScroll {
+  0% {
+    transform: translateX(92px);
+  }
+  100% {
+    transform: translateX(-92px);
+  }
+>>>>>>> 16840363 (Payment Updated)
 }
