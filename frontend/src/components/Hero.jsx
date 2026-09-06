@@ -142,7 +142,7 @@ export default function Hero() {
     </p>
 
     <p className="mt-1 font-serif2 text-sm sm:text-base tracking-wide text-white">
-      20 September 2026 • 9:00 PM
+      21 September 2026 • 9:00 PM
     </p>
   </div>
 
