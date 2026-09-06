@@ -79,7 +79,12 @@ export default function EventDetails({ eventId, onBack }) {
             </div>
           </div>
 
-          <EventHero icon={ev.icon} />
+          <div className="details-event-image">
+            <img
+              src={ev.image}
+              alt={ev.title}
+             />
+          </div>
         </div>
 
         <div className="details-bottom">
