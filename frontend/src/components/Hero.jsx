@@ -137,7 +137,38 @@ export default function Hero() {
 <div className="hidden sm:flex absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 z-10 flex-col items-center">
 
   {/* Registration Deadline */}
-  <div className="mb-4 rounded-md border border-red-400/40 bg-blue-950/30 text-blue-300 px-5 py-2.5 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+  <div className="mb-4 rounded-md border {/* Desktop / Tablet: Registration Deadline + Explore + Scroll */}
+<div className="hidden sm:flex absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 z-10 flex-col items-center">
+
+  {/* Registration Deadline */}
+  <div className="mb-4 rounded-md border border-blue-400/40 bg-blue-950/30 text-blue-300 px-5 py-2.5 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+    <p className="text-[10px] uppercase tracking-[0.25em] text-red-300 font-body">
+      Registration Ends
+    </p>
+
+    <p className="mt-1 font-serif2 text-sm sm:text-base tracking-wide text-white">
+      20 September 2026 • 9:00 PM
+    </p>
+  </div>
+
+  {/* Explore Events */}
+  <Link
+    to="/events"
+    className="mb-4 inline-flex items-center justify-center rounded-md border border-blue-400 bg-blue-950/40 px-6 py-2.5 text-sm font-semibold tracking-[0.2em] text-blue-200 transition-all duration-300 hover:bg-blue-500/20 hover:text-white hover:shadow-[0_0_25px_rgba(59,130,246,0.6)]"
+  >
+    EXPLORE EVENTS
+  </Link>
+
+  {/* Scroll to Explore */}
+  <div className="flex flex-col items-center gap-1 animate-bounce">
+    <ChevronDown className="text-blue-400" size={18} />
+
+    <span className="text-blue-300 text-xs sm:text-sm tracking-[0.3em] font-body">
+      SCROLL TO EXPLORE
+    </span>
+  </div>
+
+</div> px-5 py-2.5 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(239,68,68,0.15)]">
     <p className="text-[10px] uppercase tracking-[0.25em] text-red-300 font-body">
       Registration Ends
     </p>
