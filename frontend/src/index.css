@@ -298,3 +298,26 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Mobile-only elements */
+.mobile-only-explore,
+.mobile-only-registration {
+  display: flex;
+}
+
+/* Desktop-only elements */
+.desktop-only-explore {
+  display: none;
+}
+
+/* Desktop / tablet */
+@media (min-width: 768px) {
+  .mobile-only-explore,
+  .mobile-only-registration {
+    display: none;
+  }
+
+  .desktop-only-explore {
+    display: flex;
+  }
+}
