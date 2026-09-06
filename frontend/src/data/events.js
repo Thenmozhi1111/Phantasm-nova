@@ -11,6 +11,7 @@ const CONTENT = [
     type: 'Presentation Challenge',
     title: 'INNOSPHERE',
     tagline: 'IDEA SHOWCASE',
+    image:'/assets/events/innosphere.jpeg',
     description:
       'InnoSphere is a platform for participants to showcase their knowledge, ideas, research, and innovative concepts. Choose any topic that excites you and present it with confidence before the judges.',
     team: 'Solo or 2–4',
@@ -30,6 +31,7 @@ const CONTENT = [
     type: 'Technical Challenge',
     title: 'TECH TRINITY',
     tagline: 'CODE GAUNTLET',
+    image:'/assets/events/techtrinity.jpeg',
     description:
       'A three-round individual gauntlet testing technical knowledge, debugging skill, and programming ability — a quiz, a set of broken programs to fix, and a final coding challenge.',
     team: 'Individual',
@@ -51,6 +53,7 @@ const CONTENT = [
     type: 'AI Creative Challenge',
     title: 'VISIONFORGE',
     tagline: 'AI CREATION',
+    image:'/assets/events/visionforge.jpeg',
     description:
       'An AI-powered creative challenge where participants turn visual references and ideas into digital creations — reproducing a given image, then building a website around a theme revealed on the spot.',
     team: 'Individual',
@@ -71,6 +74,7 @@ const CONTENT = [
     type: 'Data Analysis Challenge',
     title: 'DATALENS',
     tagline: 'INSIGHT DIVE',
+    image:'/assets/events/datalens.jpeg',
     description:
       'A two-round data analysis challenge testing how well teams can explore, understand, and interpret data — first answering set questions, then hunting for insights entirely on their own.',
     team: 'Exactly 2',
@@ -90,6 +94,7 @@ const CONTENT = [
     type: 'Campus Treasure Hunt',
     title: 'QUEST.EXE',
     tagline: 'TREASURE HUNT',
+    image:'/assets/events/quest.jpeg',
     description:
       'Quest.exe is an exciting campus-wide treasure hunt where teams follow a series of clues and solve challenges to reach the final destination. Participants need observation, teamwork, logical thinking, and speed to complete the quest before the other teams.',
     team: '3–4 Members',
@@ -110,6 +115,7 @@ const CONTENT = [
     type: 'Free Fire MAX Tournament',
     title: 'ZONEIN',
     tagline: 'BATTLE ROYALE',
+    image:'/assets/events/zonein.png',
     description:
       'ZoneIn is an intense Free Fire MAX team battle where squads compete across multiple rounds to earn points. Teams must combine strategy, coordination, quick decision-making, and survival skills to finish at the top of the leaderboard.',
     team: '4 Players',
@@ -130,6 +136,7 @@ const CONTENT = [
     type: 'IPL-Style Auction',
     title: 'BIDPRO',
     tagline: 'AUCTION ARENA',
+    image:'/assets/events/bidpro.png',
     description:
       'BidPro brings the excitement of an IPL auction. Teams receive a virtual budget and compete to build their strongest squad by strategically bidding for players — success depends on smart budgeting, selection, and strategy.',
     team: '3–4 Members',
@@ -149,6 +156,7 @@ const CONTENT = [
     type: 'Debate Battle',
     title: 'MINDWAR',
     tagline: 'BATTLE OF WORDS',
+    image:'/assets/events/mindwar.png',
     description:
       'MindWar is a battle of ideas where teams compete through arguments, counterarguments, and persuasive communication. Topics and sides are assigned randomly at the venue, challenging participants to think fast and defend their position.',
     team: '3–4 Members',
