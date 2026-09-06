@@ -31,7 +31,7 @@ const socialLinks = {
   instagram:
     "https://www.instagram.com/targaryenz.gceb?igsh=d2M5M2l2Ym5tMWF5&igsi=d2M5M2l2Ym5tMWF5",
   linkedin: "https://www.linkedin.com/in/final-year-cse-33b5a342b/",
-  youtube: "https://www.youtube.com/",
+  youtube: "https://youtu.be/U1haaYsN6Js?si=kv5ecvVNPuTxKBNh",
 };
 
 const GOOGLE_MAPS_URL =
