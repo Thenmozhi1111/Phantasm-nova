@@ -41,7 +41,7 @@ export default function Navbar() {
           />
           <div className="flex flex-col leading-none">
             <span className="font-gothic text-xl sm:text-2xl md:text-3xl text-blue-500 tracking-wider drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
-              PHANTAS
+              PHANTASM
             </span>
             <span className="text-[8px] sm:text-[10px] md:text-xs text-blue-500 tracking-[0.3em] font-body">
               CSE SYMPOSIUM
