@@ -79,9 +79,13 @@ export default function Hero() {
             </div>
             
           </div>
-          {/* Registration Deadline - Mobile */}
+       
+          {/* Explore Events Button */}
+{/* Explore Events Button - Mobile Only */}
+<div className="flex sm:hidden justify-center mt-12">
+     {/* Registration Deadline - Mobile */}
 <div className="flex sm:hidden justify-center mt-6">
-  <div className="rounded-md border border-red-400/40 bg-red-950/20 px-5 py-2.5 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+  <div className="rounded-md border border-blue-400/40 bg-blue-950/30 text-blue-300 px-5 py-2.5 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(239,68,68,0.15)]">
     <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-red-300 font-body">
       Registration Ends
     </p>
@@ -93,9 +97,6 @@ export default function Hero() {
   </p>
   </div>
 </div>
-          {/* Explore Events Button */}
-{/* Explore Events Button - Mobile Only */}
-<div className="flex sm:hidden justify-center mt-12">
   <Link
     to='/events'
     className="
@@ -135,7 +136,7 @@ export default function Hero() {
 <div className="hidden sm:flex absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 z-10 flex-col items-center">
 
   {/* Registration Deadline - Desktop */}
-  <div className="mb-4 rounded-md border border-red-400/40 bg-red-950/20 px-5 py-2.5 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+  <div className="mb-4 rounded-md border border-blue-400/40 bg-blue-950/30 text-blue-300 px-5 py-2.5 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(239,68,68,0.15)]">
     <p className="text-[10px] uppercase tracking-[0.25em] text-red-300 font-body">
       Registration Ends
     </p>
