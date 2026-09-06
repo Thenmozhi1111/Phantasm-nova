@@ -25,7 +25,7 @@ app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
 // CORS_ORIGIN can be a single URL or a comma-separated list of URLs.
 // Falls back to the local Vite dev server so `npm run dev` works out of the box.
-const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173')
+const allowedOrigins = (process.env.CORS_ORIGIN || 'https://phantasm-nova.vercel.app')
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
