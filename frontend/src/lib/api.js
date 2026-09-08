@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'https://phantasm-nova.onrender.com';
+const API_BASE = import.meta.env.VITE_API_URL || 'https://phantasm-nova.vercel.app';
 
 // Previously a hung request (e.g. the backend's SMTP call blocking on
 // "forgot password") had nothing to stop it, so buttons like "Sending…"
