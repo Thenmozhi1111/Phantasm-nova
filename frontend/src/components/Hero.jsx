@@ -84,7 +84,7 @@ export default function Hero() {
 <div className="flex sm:hidden flex-col items-center mt-12 gap-3">
   <div className="inline-flex items-center gap-2 rounded-md border border-amber-400/40 bg-amber-950/20 px-4 py-2 text-[11px] font-semibold tracking-[0.15em] text-amber-200 shadow-[0_0_18px_rgba(251,191,36,0.2)] backdrop-blur-sm">
     <Clock size={13} className="text-amber-400" />
-    <span>REGISTRATION CLOSES · 22/09/26, 6:00 PM</span>
+    <span>REGISTRATION CLOSES · 21/09/26, 6:00 PM</span>
   </div>
   <Link
     to='/events'
