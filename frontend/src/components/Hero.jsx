@@ -128,7 +128,7 @@ export default function Hero() {
     size={14}
     className="text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
   />
-  <span>REGISTRATION CLOSES · 22/09/26, 6:00 PM</span>
+  <span>REGISTRATION CLOSES · 21/09/26, 6:00 PM</span>
 </div>
 
   <Link
