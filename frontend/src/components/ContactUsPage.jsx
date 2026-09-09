@@ -393,11 +393,11 @@ export default function ContactUsPage({ showNavbar = true }) {
           <div>
 
             <div className="font-gothic text-lg text-blue-500">
-              PHANTASM
+              PHANTASM NOVA
             </div>
 
             <div className="text-[9px] tracking-[0.3em] text-gray-400 mb-2">
-              CSE SYMPOSIUM
+              
             </div>
 
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm">
@@ -569,7 +569,7 @@ export default function ContactUsPage({ showNavbar = true }) {
             border-white/5
           "
         >
-          © 2025 PHANTASM CSE Symposium. All Rights Reserved.
+          © 2026 PHANTASM NOVA. All Rights Reserved.
         </div>
 
       </footer>
