@@ -54,7 +54,7 @@ export const EVENTS = [
     price: TEAM_EVENT_PRICE,
     minSize: 3,
     maxSize: 4,
-    parallelWith: "zonein",
+    parallelWith: "bidpro",
   },
   {
     id: "zonein",
@@ -64,7 +64,7 @@ export const EVENTS = [
     price: TEAM_EVENT_PRICE,
     minSize: 4,
     maxSize: 4,
-    parallelWith: "quest-exe",
+    parallelWith: "mindwar",
   },
   {
     id: "bidpro",
@@ -74,7 +74,7 @@ export const EVENTS = [
     price: TEAM_EVENT_PRICE,
     minSize: 3,
     maxSize: 4,
-    parallelWith: "mindwar",
+    parallelWith: "quest-exe",
   },
   {
     id: "mindwar",
@@ -84,7 +84,7 @@ export const EVENTS = [
     price: TEAM_EVENT_PRICE,
     minSize: 3,
     maxSize: 4,
-    parallelWith: "bidpro",
+    parallelWith: "zonein",
   },
 ];
 
