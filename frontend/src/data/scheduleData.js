@@ -12,9 +12,9 @@ export const scheduleTimeline = [
     type: "node",
     id: "inaugural",
     time: "9:00 AM",
-    title: "Inaugural Ceremony",
-    venue: "CSE Seminar Hall",
-    desc: "Symposium opens with the lighting of the lamp and welcome address.",
+    title: "Registration",
+    venue: "Valiriyanz classroom",
+    desc: "Visit the designated classroom to sign up,collect your pass and join with us",
   },
   {
     type: "cluster",
