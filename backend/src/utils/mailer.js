@@ -58,7 +58,7 @@ ${newPassword}
 
 Please use this password to log in to your Phantasm 2026 account.
 
-For security, we recommend changing your password after logging in.
+// For security, we recommend changing your password after logging in.
 
 This is an automated message from Phantasm 2026. Please do not reply to this email.`,
 
@@ -181,14 +181,14 @@ This is an automated message from Phantasm 2026. Please do not reply to this ema
           Please use this password to log in.
         </p>
 
-        <p style="
-          margin: 0;
-          font-size: 16px;
-          line-height: 1.7;
-          color: #1e293b;
-        ">
-          For security, we recommend changing your password after logging in.
-        </p>
+        // <p style="
+        //   margin: 0;
+        //   font-size: 16px;
+        //   line-height: 1.7;
+        //   color: #1e293b;
+        // ">
+        //   For security, we recommend changing your password after logging in.
+        // </p>
 
       </div>
 
