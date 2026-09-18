@@ -1352,12 +1352,13 @@ export default function RegistrationForm() {
 
                     {e.name}
 
-                    {e.type ===
-                      "team" && (
-                      <span className="ml-1 text-[10px] text-amber-300/70">
-                        (whole team)
-                      </span>
-                    )}
+                    {!isPass &&
+                      e.type ===
+                        "team" && (
+                        <span className="ml-1 text-[10px] text-amber-300/70">
+                          (whole team)
+                        </span>
+                      )}
                   </span>
 
                   {isPass ? (
@@ -1443,6 +1444,17 @@ export default function RegistrationForm() {
               {inr(total)}
             </span>
           </div>
+
+          {isPass && (
+            <p className="relative mt-2 text-[10px] leading-relaxed text-sky-300/70">
+              The Nova Pass is an
+              individual pass — it
+              covers only you. Each
+              teammate joining you in a
+              team event needs their own
+              ₹300 pass.
+            </p>
+          )}
 
           {!isPass &&
             hasTeamEvents && (
