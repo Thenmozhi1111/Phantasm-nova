@@ -5,7 +5,7 @@ export const SOLO_EVENT_PRICE = 150;
 
 // Team events (single-event mode) are a ONE-TIME charge for the whole
 // team — not per head. DataLens is deliberately left at its old 150.
-export const TEAM_EVENT_PRICE = 1;
+export const TEAM_EVENT_PRICE = 200;
 export const DATALENS_PRICE = 150;
 
 export const PASS_PRICE = 300;
