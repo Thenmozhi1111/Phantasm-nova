@@ -1,0 +1,100 @@
+// Mirrors frontend/src/lib/events.js. Kept in sync manually — this is the
+// source of truth the server uses to price and validate registrations, so
+// a tampered client payload can never change what gets charged.
+export const SOLO_EVENT_PRICE = 150;
+
+// Team events (single-event mode) are a ONE-TIME charge for the whole
+// team — not per head. DataLens is deliberately left at its old 150.
+export const TEAM_EVENT_PRICE = 1;
+export const DATALENS_PRICE = 150;
+
+export const PASS_PRICE = 300;
+
+export const EVENTS = [
+  {
+    id: "innosphere",
+    name: "InnoSphere",
+    category: "technical",
+    type: "team",
+    price: TEAM_EVENT_PRICE,
+    minSize: 1,
+    maxSize: 4,
+    parallelWith: null,
+  },
+  {
+    id: "tech-trinity",
+    name: "Tech Trinity",
+    category: "technical",
+    type: "solo",
+    price: SOLO_EVENT_PRICE,
+    minSize: 1,
+    maxSize: 1,
+    parallelWith: null,
+  },
+  {
+    id: "visionforge",
+    name: "VisionForge",
+    category: "technical",
+    type: "solo",
+    price: SOLO_EVENT_PRICE,
+    minSize: 1,
+    maxSize: 1,
+    parallelWith: "datalens",
+  },
+  {
+    id: "datalens",
+    name: "DataLens",
+    category: "technical",
+    type: "team",
+    price: DATALENS_PRICE,
+    minSize: 1,
+    maxSize: 2,
+    parallelWith: "visionforge",
+  },
+  {
+    id: "quest-exe",
+    name: "Quest.exe",
+    category: "nontech",
+    type: "team",
+    price: TEAM_EVENT_PRICE,
+    minSize: 3,
+    maxSize: 4,
+    parallelWith: "bidpro",
+  },
+  {
+    id: "zonein",
+    name: "ZoneIn",
+    category: "nontech",
+    type: "team",
+    price: TEAM_EVENT_PRICE,
+    minSize: 4,
+    maxSize: 4,
+    parallelWith: "mindwar",
+  },
+  {
+    id: "bidpro",
+    name: "BidPro",
+    category: "nontech",
+    type: "team",
+    price: TEAM_EVENT_PRICE,
+    minSize: 3,
+    maxSize: 4,
+    parallelWith: "quest-exe",
+  },
+  {
+    id: "mindwar",
+    name: "MindWar",
+    category: "nontech",
+    type: "team",
+    price: TEAM_EVENT_PRICE,
+    minSize: 3,
+    maxSize: 4,
+    parallelWith: "zonein",
+  },
+];
+
+const eventById = new Map(EVENTS.map((e) => [e.id, e]));
+
+export function getEvent(id) {
+  return eventById.get(id);
+}
