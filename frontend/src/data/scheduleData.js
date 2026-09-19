@@ -86,7 +86,7 @@ export const scheduleTimeline = [
           {
             id: "zonein",
             title: "ZoneIn",
-            venue: "Valiriyanz Classroom",
+            venue: "Valyrianz Classroom",
             desc: "Free Fire MAX squad battle across multiple rounds for leaderboard points.",
           },
         ],
