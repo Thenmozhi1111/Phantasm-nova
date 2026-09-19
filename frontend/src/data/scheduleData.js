@@ -12,9 +12,9 @@ export const scheduleTimeline = [
     type: "node",
     id: "inaugural",
     time: "9:00 AM",
-    title: "Inaugural Ceremony",
-    venue: "CSE Seminar Hall",
-    desc: "Symposium opens with the lighting of the lamp and welcome address.",
+    title: "Registration",
+    venue: "Valyrianz Classroom",
+    desc: "Register offline and collect id",
   },
   {
     type: "cluster",
@@ -46,13 +46,13 @@ export const scheduleTimeline = [
           {
             id: "visionforge",
             title: "VisionForge",
-            venue: "Foreign Language Lab",
+            venue: "Project lab",
             desc: "AI image generation, then a themed website build — no templates allowed.",
           },
           {
             id: "datalens",
             title: "DataLens",
-            venue: "Cloud Lab",
+            venue: "Foreign Language Lab",
             desc: "Two-round data analysis challenge — answer questions, then find your own insights.",
           },
         ],
@@ -64,7 +64,7 @@ export const scheduleTimeline = [
     id: "lunch",
     time: "12:30 PM – 1:30 PM",
     title: "Lunch Break",
-    venue: null,
+    venue: "Asgardianz Classroom",
     desc: "Refuel before the non-tech track begins.",
   },
   {
