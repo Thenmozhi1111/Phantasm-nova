@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: phantasm_user
+      POSTGRES_PASSWORD: phantasm_pass
+      POSTGRES_DB: phantasm
+    ports:
+      - "5432:5432"
+    volumes:
+      - phantasm_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U phantasm_user -d phantasm"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  phantasm_pgdata:
